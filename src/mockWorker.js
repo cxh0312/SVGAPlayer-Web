@@ -61,6 +61,13 @@ const actions = {
             }
         }
         else {
+            // url应该是一个非空字符串
+            if(typeof url !== 'string' || url === '') {
+                const err = `url should be a not empty string`;
+                failure && failure(err);
+                console.error(err);
+                return;
+            }
             const req = new XMLHttpRequest()
             req.open("GET", url, true);
             req.responseType = "arraybuffer"
